@@ -245,7 +245,7 @@ hi NonText          guifg=#404040                                   gui=none
 hi NonText          ctermfg=238                                     cterm=none
 " the hit-enter prompt (show more output) and yes/no questions
 hi Question         guifg=fg                                        gui=none
-hi Question         ctermfg=fg                                      cterm=none
+hi Question         ctermfg=178                                     cterm=none
 " meta and special keys used with map, unprintable characters
 hi SpecialKey       guifg=#405060
 hi SpecialKey       ctermfg=239
@@ -321,7 +321,7 @@ hi PMenuThumb                               ctermbg=102             cterm=none
 
 " Status Line
 " -----------
-" status line for current window
+" status line for current window 
 hi StatusLine       guifg=#e0e0e0           guibg=#363946           gui=bold
 hi StatusLine       ctermfg=254             ctermbg=237             cterm=bold
 " status line for non-current windows

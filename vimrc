@@ -13,8 +13,10 @@ set background=dark
 " colorscheme mustang
 colorscheme lucius
 set t_Co=256
+set timeoutlen=300
 
-let mapleader = ","
+let   mapleader = ","
+let g:mapleader = ","
 
 set nocompatible
 set modelines=0
@@ -22,9 +24,9 @@ set modelines=0
 set nu
 set nowrap
 
-set tabstop=4  	  " Tabs are 4 spaces
-set shiftwidth=4  " Tabs under smart indent
-set softtabstop=4
+set tabstop=2  	  " Tabs are 2 spaces
+set shiftwidth=2  " Tabs under smart indent
+set softtabstop=2
 set expandtab
 
 set encoding=utf-8
@@ -69,8 +71,9 @@ set formatoptions=qrnl
 set pastetoggle=<F2> " set the paste toggle key
 
 nnoremap ; :
+"nnoremap : ;
 
-nnoremap <leader>w <C-w>v<C-w>l
+" nnoremap <leader>w <C-w>v<C-w>l
 
 " ,v brings up my .vimrc
 " ,V reloads it -- making all changes active (have to save first)
@@ -95,8 +98,8 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-map <C-n> <C-w><
-map <C-m> <C-w>>
+"map <C-n> <C-w><
+"map <C-m> <C-w>>
 
 " fold tag
 nnoremap <leader>ft Vatzf 
@@ -106,8 +109,14 @@ nnoremap <leader>ft Vatzf
 " =================== 
 
 " NerdTree
-map <leader>t :NERDTree<CR>
+map <leader>t :NERDTree<cr>
+let NERDTreeWinPos="right"
+let NERDTreeWinSize=22
+let NERDTreeShowHidden=1
 
+"lustyJuggler
+map <leader>b :LustyJuggler<cr>
+" let g:LustyJugglerShowKeys = 'a'   "(for alpha characters)
 
 if has("autocmd")
   " Enable filetype detection

@@ -112,7 +112,7 @@ nnoremap <leader>ft Vatzf
 map <leader>t :NERDTree<cr>
 let NERDTreeWinPos="right"
 let NERDTreeWinSize=22
-let NERDTreeShowHidden=1
+let NERDTreeShowHidden=0
 
 "lustyJuggler
 map <leader>b :LustyJuggler<cr>

@@ -16,3 +16,9 @@
 [submodule "bundle/lustybuffer"]
 	path = bundle/lustybuffer
 	url = git://github.com/sjbach/lusty.git
+[submodule "bundle/jquery"]
+	path = bundle/jquery
+	url = git://github.com/vim-scripts/jQuery
+[submodule "bundle/javascript"]
+	path = bundle/javascript
+	url = git://github.com/pangloss/vim-javascript

@@ -6,3 +6,6 @@ Create symlinks:
 
     ln -s ~/.vim/vimrc ~/.vimrc
 
+To install the plugins use the vim-bundler gem which can be found here:
+
+    https://github.com/vintikzzz/vim-bundler

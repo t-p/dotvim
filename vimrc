@@ -1,4 +1,3 @@
-
 filetype off
 
 set rtp+=~/.vim/bundle/vundle/
@@ -9,20 +8,23 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " original repos on github
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-pastie'
+" Bundle 'tpope/vim-rails'
+" Bundle 'tpope/vim-surround'
+" Bundle 'tpope/vim-pastie'
 Bundle 'tpope/vim-haml'
 Bundle 'vim-scripts/jQuery'
 Bundle 'vim-scripts/vim-json-bundle'
-Bundle 'sjbach/lusty'
-Bundle 'msanders/snipmate.vim'
+" Bundle 'sjbach/lusty'
+" Bundle 'msanders/snipmate.vim'
 Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
 Bundle 'wincent/Command-T'
 Bundle 'chrismetcalf/vim-taglist'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'pangloss/vim-javascript'
+Bundle 'pbrisbin/html-template-syntax'
+" Bundle 'altercation/vim-colors-solarized'
 " Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 " vim-scripts repos
 " Bundle 'L9'
@@ -44,8 +46,9 @@ Bundle 'pangloss/vim-javascript'
 filetype on
 filetype plugin indent on
 
+syntax enable
 set background=dark
-" colorscheme mustang
+"colorscheme mustang
 colorscheme lucius
 set t_Co=256
 set timeoutlen=1000
@@ -144,7 +147,7 @@ nmap <silent> <Leader>n :CommandT<CR>
 nmap <silent> <Leader>b :CommandTBuffer<CR>
 let g:CommandTMaxHeight=15
 let g:CommandTMatchWindowReverse=1
-:set wildignore+="coverage/**"
+" :set wildignore+="coverage/**"
 nnoremap j gj
 nnoremap k gk
 
@@ -161,7 +164,7 @@ nnoremap <leader>ft Vatzf
 " surround word
 map <leader>s ysiw
 " save and close all
-map <leader>q :wqa!
+map <leader>q :qa
 "
 map Y y$
 
@@ -175,10 +178,9 @@ map tc :tabclose<CR>
 " =================== 
 
 " NerdTree
-autocmd VimEnter * NERDTree
-"autocmd VimEnter * wincmd h
-autocmd BufEnter * NERDTreeMirror
-autocmd BufNew   * wincmd h
+" autocmd VimEnter * NERDTree
+" autocmd BufEnter * NERDTreeMirror
+" autocmd BufNew   * wincmd h
 map <leader>t :NERDTree<cr>
 map <leader>tm :NERDTreeMirror<cr>
 let NERDTreeWinPos="right"

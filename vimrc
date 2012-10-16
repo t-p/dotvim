@@ -11,33 +11,28 @@ Bundle 'gmarik/vundle'
 " Bundle 'tpope/vim-rails'
 " Bundle 'tpope/vim-surround'
 " Bundle 'tpope/vim-pastie'
-" Bundle 'chrismetcalf/vim-taglist'
-" Bundle 'Shougo/neocomplcache'
+Bundle 'tpope/vim-haml'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-markdown'
+Bundle 'vim-scripts/jQuery'
+Bundle 'vim-scripts/vim-json-bundle'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'wincent/Command-T'
+Bundle 'chrismetcalf/vim-taglist'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'pangloss/vim-javascript'
+Bundle 'pbrisbin/html-template-syntax'
+"
+" Bundle 'jelera/vim-javascript-syntax'
 " Bundle 'msanders/snipmate.vim'
-" Bundle 'ervandew/supertab'
-" Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Bundle 'Townk/vim-autoclose'
 " vim-scripts repos
 " Bundle 'L9'
 " Bundle 'FuzzyFinder'
 " Bundle 'rails.vim'
-" non github repos
-" Bundle 'git://git.wincent.com/command-t.git'
-" ...
 "
-Bundle 'tpope/vim-fugitive'
-Bundle 'Townk/vim-autoclose'
-Bundle 'scrooloose/nerdtree'
-Bundle 'wincent/Command-T'
-Bundle 'danchoi/ri.vim'
-"
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'tpope/vim-haml'
-Bundle 'tpope/vim-markdown'
-" Bundle 'jelera/vim-javascript-syntax'
-Bundle 'pangloss/vim-javascript'
-Bundle 'vim-scripts/jQuery'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'vim-scripts/vim-json-bundle'
 "  Brief help
 " :BundleList          - list configured bundles
 " :BundleInstall(!)    - install(update) bundles
@@ -50,6 +45,7 @@ Bundle 'vim-scripts/vim-json-bundle'
 filetype on
 filetype plugin indent on
 
+syntax enable
 set background=dark
 " colorscheme mustang
 " colorscheme lucius
@@ -163,29 +159,12 @@ nnoremap ; :
 " ,V reloads it -- making all changes active (have to save first)
 map <leader>v :sp ~/.vimrc<CR><C-W>_
 map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
-" -------------
-" neocomplcache
-" -------------
-" Disable AutoComplPop.
-"let g:acp_enableAtStartup = 0
-"" Use neocomplcache.
-"let g:neocomplcache_enable_at_startup = 1
-"" Use smartcase.
-"let g:neocomplcache_enable_smart_case = 1
-"" Use camel case completion.
-"let g:neocomplcache_enable_camel_case_completion = 1
-"" Use underbar completion.
-"let g:neocomplcache_enable_underbar_completion = 1
-"" Set minimum syntax keyword length.
-"let g:neocomplcache_min_syntax_length = 3
-"let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
 " Command-T mapping and options
 nmap <silent> <Leader>n :CommandT<CR>
 nmap <silent> <Leader>m :CommandTBuffer<CR>
 let g:CommandTMaxHeight=15
 let g:CommandTMatchWindowReverse=1
-:set wildignore+="coverage/**"
+" :set wildignore+="coverage/**"
 nnoremap j gj
 nnoremap k gk
 
@@ -205,15 +184,6 @@ function! StripTrailingWhitespace()
 endfunction
 autocmd BufWritePre COMMIT_EDITMSG,.vimrc,*.js,*.rb,*.haml :call StripTrailingWhitespace()
 
-" tab completion
-" function! CleverTab()
-"    if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
-"       return "\<Tab>"
-"    else
-"       return "\<C-N>"
-"    endif
-" endfunction
-inoremap <Tab> <C-R>=CleverTab()<CR>
 set wildmode=longest,list:longest
 set completeopt=menu,preview
 
@@ -245,7 +215,6 @@ map tc :tabclose<CR>
 
 " NerdTree
 " autocmd VimEnter * NERDTree
-" autocmd VimEnter * wincmd h
 " autocmd BufEnter * NERDTreeMirror
 " autocmd BufNew   * wincmd h
 map <leader>t :NERDTree<cr>
@@ -255,10 +224,6 @@ let NERDTreeWinSize=32
 let NERDTreeShowHidden=0
 let NERDTreeMouseMode=2
 
-" lustyJuggler
-" map <leader>b :LustyJuggler<cr>
-" let g:LustyJugglerShowKeys = 'a'   "(for alpha characters)
-"
 " TagList
 let Tlist_Ctags_Cmd = "/usr/bin/ctags-exuberant"
 let Tlist_WinWidth = 50
@@ -267,10 +232,6 @@ map <Leader>rt :!ctags-exuberant --extra=+f --exclude=.git --exclude=log -R * `r
 "map <Leader>rt :!ctags --extra=+f --exclude=.git --exclude=log -R * `rvm gemdir`/gems/*<CR><CR>
 "nnoremap <silent> <F8> :TlistToggle<CR>
 "
-" ri Dokumentation
-nnoremap  ,r :call ri#OpenSearchPrompt(1)<cr> " vertical split
-nnoremap  ,e :call ri#LookupNameUnderCursor()<cr> " keyword lookup
-
 if has("autocmd")
   " Enable filetype detection
   " filetype plugin indent on

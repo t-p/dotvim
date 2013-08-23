@@ -17,6 +17,7 @@ Bundle 'vim-scripts/jQuery'
 Bundle 'vim-scripts/vim-json-bundle'
 Bundle 'vim-scripts/taglist.vim'
 Bundle 'scrooloose/nerdtree'
+Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'scrooloose/syntastic'
 Bundle 'thoughtbot/vim-rspec'
 " Bundle 'wincent/Command-T'
@@ -238,6 +239,7 @@ map tc :tabclose<CR>
 " autocmd BufNew   * wincmd h
 map <leader>t :NERDTree<cr>
 map <leader>tm :NERDTreeMirror<cr>
+let g:nerdtree_tabs_open_on_console_startup=1
 let NERDTreeWinPos="right"
 let NERDTreeWinSize=32
 let NERDTreeShowHidden=0

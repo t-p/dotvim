@@ -3,8 +3,6 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" let Vundle manage Vundle
-" required!
 Bundle 'gmarik/vundle'
 
 " original repos on github
@@ -14,24 +12,21 @@ Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-dispatch'
 Bundle 'vim-scripts/jQuery'
 Bundle 'vim-scripts/vim-json-bundle'
+Bundle 'vim-scripts/taglist.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
-Bundle 'wincent/Command-T'
+Bundle 'thoughtbot/vim-rspec'
+" Bundle 'wincent/Command-T'
+Bundle 'kien/ctrlp.vim'
 Bundle 'chrismetcalf/vim-taglist'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'pangloss/vim-javascript'
 Bundle 'pbrisbin/html-template-syntax'
-"
-" Bundle 'jelera/vim-javascript-syntax'
-" Bundle 'msanders/snipmate.vim'
-" Bundle 'Townk/vim-autoclose'
-" vim-scripts repos
-" Bundle 'L9'
-" Bundle 'FuzzyFinder'
-" Bundle 'rails.vim'
+Bundle 'airblade/vim-gitgutter'
 "
 "  Brief help
 " :BundleList          - list configured bundles
@@ -46,13 +41,16 @@ filetype on
 filetype plugin indent on
 
 syntax enable
+
+if !has("gui_running")
+    set t_Co=256
+endif
 set background=dark
+colorscheme Tomorrow-Night
 " colorscheme mustang
 " colorscheme lucius
-colorscheme Tomorrow-Night
 " colorscheme Tomorrow-Night-Eighties
 " colorscheme Tomorrow-Night-Bright
-set t_Co=256
 set timeoutlen=1000
 
 let   mapleader = ","
@@ -105,11 +103,32 @@ nnoremap <leader><space> :noh<cr>
 nnoremap <tab> %
 vnoremap <tab> %
 
+" Set the Ruby filetype for a number of common Ruby files without .rb
+autocmd BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,Procfile,config.ru,*.rake} set filetype=ruby
+
+" Make sure all mardown files have the correct filetype set and setup wrapping
+autocmd BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
+
+" Treat JSON files like JavaScript
+autocmd BufNewFile,BufRead *.json set filetype=javascript
+
+" Remember last location in file, but not for commit messages.
+" see :help last-position-jump
+autocmd BufReadPost *
+  \ if line("'\"") > 0 && line("'\"") <= line("$") |
+  \   exe "normal g`\"" |
+  \ endif
+
 " statusline
-set statusline=[%F%m%r%h%w]
-set statusline+=\ %{fugitive#statusline()}
-set statusline+=\ [line\ %l\/%L]
-set statusline+=\ %{v:register}
+set statusline=%f\ %m\ %r
+set statusline+=%{fugitive#statusline()}
+set statusline+=\ Line:%l/%L[%p%%]
+set statusline+=\ Col:%v
+set statusline+=\ Buf:#%n
+"set statusline=[%F%m%r%h%w]
+"set statusline+=\ %{fugitive#statusline()}
+"set statusline+=\ [line\ %l\/%L]
+"set statusline+=\ %{v:register}
 "set statusline+=[%{strlen(&fenc)?&fenc:&enc}]
 "set statusline+=%{rvm#statusline()}
 
@@ -160,7 +179,7 @@ nnoremap ; :
 map <leader>v :sp ~/.vimrc<CR><C-W>_
 map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 " Command-T mapping and options
-nmap <silent> <Leader>n :CommandT<CR>
+" nmap <silent> <Leader>n :CommandT<CR>
 nmap <silent> <Leader>m :CommandTBuffer<CR>
 let g:CommandTMaxHeight=15
 let g:CommandTMatchWindowReverse=1
@@ -225,13 +244,21 @@ let NERDTreeShowHidden=0
 let NERDTreeMouseMode=2
 
 " TagList
-let Tlist_Ctags_Cmd = "/usr/bin/ctags-exuberant"
-let Tlist_WinWidth = 50
-map <F6> :TlistToggle<cr>
-map <Leader>rt :!ctags-exuberant --extra=+f --exclude=.git --exclude=log -R * `rvm gemdir`/gems/*<CR><CR>
+map <Leader>b :TlistToggle<CR>
+"let Tlist_Ctags_Cmd = "/usr/bin/ctags-exuberant"
+"let Tlist_WinWidth = 50
+"map <F6> :TlistToggle<cr>
+"map <Leader>rt :!ctags-exuberant --extra=+f --exclude=.git --exclude=log -R * `rvm gemdir`/gems/*<CR><CR>
 "map <Leader>rt :!ctags --extra=+f --exclude=.git --exclude=log -R * `rvm gemdir`/gems/*<CR><CR>
 "nnoremap <silent> <F8> :TlistToggle<CR>
 "
+" RSpec.vim mappings
+map <Leader>a :call RunAllSpecs()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>d :call RunCurrentSpecFile()<CR>
+map <Leader>f :call RunLastSpec()<CR>
+
+
 if has("autocmd")
   " Enable filetype detection
   " filetype plugin indent on

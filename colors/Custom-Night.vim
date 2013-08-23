@@ -1,11 +1,11 @@
-" Tomorrow Night - Full Colour and 256 Colour
-" http://chriskempson.com
+" Custom Night - Full Colour and 256 Colour
 "
+" Theme based on "Tomoorow Night", see http://chriskempson.com
 " Hex colour conversion functions borrowed from the theme "Desert256""
 
 " Default GUI Colours
 let s:foreground = "c5c8c6"
-let s:background = "1d1f21"
+let s:background = "000000"
 let s:selection = "373b41"
 let s:line = "282a2e"
 let s:comment = "969896"
@@ -20,10 +20,10 @@ let s:window = "4d5057"
 
 " Console 256 Colours
 if !has("gui_running")
-	let s:background = "303030"
+	let s:background = "000000"
 	let s:window = "5e5e5e"
-	let s:line = "3a3a3a"
-	let s:selection = "585858"
+	let s:line = "262626"
+	let s:selection = "4d4d4d"
 end
 
 set background=dark

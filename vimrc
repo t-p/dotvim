@@ -47,7 +47,7 @@ if !has("gui_running")
     set t_Co=256
 endif
 set background=dark
-colorscheme Tomorrow-Night
+colorscheme Custom-Night
 " colorscheme mustang
 " colorscheme lucius
 " colorscheme Tomorrow-Night-Eighties
@@ -70,6 +70,7 @@ set softtabstop=2
 set expandtab
 
 set clipboard=unnamedplus
+set clipboard=unnamed
 
 set encoding=utf-8
 set scrolloff=3

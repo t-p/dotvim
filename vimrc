@@ -49,9 +49,6 @@ endif
 set background=dark
 colorscheme Custom-Night
 " colorscheme mustang
-" colorscheme lucius
-" colorscheme Tomorrow-Night-Eighties
-" colorscheme Tomorrow-Night-Bright
 set timeoutlen=1000
 
 let   mapleader = ","
@@ -75,6 +72,7 @@ set clipboard=unnamed
 set encoding=utf-8
 set scrolloff=3
 set autoindent
+set autoread      " reload files when changed on disk, i.e. via `git checkout
 set showmode
 set showcmd
 set hidden
@@ -107,12 +105,12 @@ vnoremap <tab> %
 
 " Set the Ruby filetype for a number of common Ruby files without .rb
 autocmd BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,Procfile,config.ru,*.rake} set filetype=ruby
-
-" Make sure all mardown files have the correct filetype set and setup wrapping
-autocmd BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
-
 " Treat JSON files like JavaScript
 autocmd BufNewFile,BufRead *.json set filetype=javascript
+" fdoc is yaml
+autocmd BufRead,BufNewFile *.fdoc set filetype=yaml
+" md is markdown
+autocmd BufRead,BufNewFile *.md set filetype=markdown
 
 " Remember last location in file, but not for commit messages.
 " see :help last-position-jump
@@ -166,8 +164,8 @@ nmap <silent> <F5> <ESC>:call ToggleFoldingMode()<cr>
 set pastetoggle=<F2> " set the paste toggle key
 
 function! ToggleNuMode()
-  if &rnu
-    set nu
+  if(&rnu == 1)
+    set nornu
   else
     set rnu
   endif
@@ -230,14 +228,25 @@ map th :tabprev<CR>
 map tl :tabnext<CR>
 map tc :tabclose<CR>
 
+" Support resizing in tmux
+if exists('$TMUX')
+  set ttymouse=xterm2
+endif
+
+" Fix Cursor in TMUX
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+
 " ===================
 " plugins
 " ===================
 
 " NerdTree
-" autocmd VimEnter * NERDTree
-" autocmd BufEnter * NERDTreeMirror
-" autocmd BufNew   * wincmd h
 map <leader>t :NERDTree<cr>
 map <leader>tm :NERDTreeMirror<cr>
 let g:nerdtree_tabs_open_on_console_startup=1

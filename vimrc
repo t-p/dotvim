@@ -19,7 +19,9 @@ Bundle 'vim-scripts/taglist.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'scrooloose/syntastic'
+" http://robots.thoughtbot.com/post/55273519322/running-specs-from-vim-sent-to-tmux-via-tslime
 Bundle 'thoughtbot/vim-rspec'
+Bundle 'jgdavey/tslime.vim'
 " Bundle 'wincent/Command-T'
 Bundle 'kien/ctrlp.vim'
 Bundle 'chrismetcalf/vim-taglist'
@@ -264,6 +266,7 @@ map <Leader>b :TlistToggle<CR>
 "map <Leader>rt :!ctags --extra=+f --exclude=.git --exclude=log -R * `rvm gemdir`/gems/*<CR><CR>
 "nnoremap <silent> <F8> :TlistToggle<CR>
 "
+let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
 " RSpec.vim mappings
 map <Leader>a :call RunAllSpecs()<CR>
 map <Leader>s :call RunNearestSpec()<CR>

@@ -30,6 +30,8 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'pangloss/vim-javascript'
 Bundle 'pbrisbin/html-template-syntax'
 Bundle 'airblade/vim-gitgutter'
+" colorscheme
+Bundle 'chriskempson/base16-vim'
 "
 "  Brief help
 " :BundleList          - list configured bundles
@@ -49,6 +51,7 @@ if !has("gui_running")
     set t_Co=256
 endif
 set background=dark
+" colorscheme base16-default
 colorscheme Custom-Night
 " colorscheme mustang
 set timeoutlen=1000
